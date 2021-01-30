@@ -122,11 +122,11 @@ nav ul li a:hover, a.active{
     display: flex;
     justify-content: space-between;
 }
-/* #show-text{
-    font-size: 50px;
-    text-decoration-color: #051463;
-} */
-
-
+#show-text{
+    font-size: 30px;
+    color: #051463;
+    font-weight: 600;
+    margin-bottom: 30px;
+} 
 
 

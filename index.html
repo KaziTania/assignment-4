@@ -52,9 +52,10 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($150)</label>
-                    <input id="first-count" class="inp-style inp-width" type="number" name="">
+                    <!-- Used placeholder and "first-count" named id  -->
+                    <input placeholder=0  id="first-count" class="inp-style inp-width" type="number" name="">
                 </div>
-
+                <!-- Used flex in div class and onclick in button -->
                 <div class="plus-minus-btn d-flex align-items-center">
 
                     <button onclick="handleTicketChange('first',true);" class="btn btn-default"><i class="first pluse-btn"></i><span class="click-btn">+</span></button>
@@ -67,13 +68,15 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($100)</label>
-                    <input id="economy-count" class="inp-style inp-width" type="number" name="">
+                    <!-- Used placeholder and "economy-count" named id  -->
+                    <input placeholder=0 id="economy-count" class="inp-style inp-width" type="number" name="">
                 </div>
+                <!-- Used flex in div class and onclick in button -->
                 <div class="plus-minus-btn d-flex align-items-center">
 
                     <button onclick="handleTicketChange('economy',true);"class="btn btn-default"><i class="first minus-btn"></i><span class="click-btn">+</span></button>
 
-                    <button onclick="handleTicketChange('economy',false);"class="btn btn-default"><i class="first minus-btn"></i><span class="click-btn">-</span></button>
+                    <button  onclick="handleTicketChange('economy',false);"class="btn btn-default"><i class="first minus-btn"></i><span class="click-btn">-</span></button>
                 </div>
             </div>
             <div class="calculations">
@@ -82,7 +85,8 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p id = "total-price">$500</p>
+                        <!-- Changed price into $0 -->
+                        <p id = "total-price">$0</p>
                     </div>
                 </div>
 
@@ -91,7 +95,8 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p id="tax-amount">$50</p>
+                        <!-- Changed price into $0 -->
+                        <p id="tax-amount">$0</p>
                     </div>
                 </div>
                 <hr>
@@ -100,11 +105,14 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p id="grand-total">$550</p>
+                        <!-- Changed price into $0 -->
+                        <p id="grand-total">$0</p>
                     </div>
                 </div>
             </div>
-           <div id="show-text"> 
+            <!-- Used button for show text -->
+           <div > 
+               <div id="show-text"></div>
                <button onclick="text();" class="btn-style">Book Now</button>
             </div>
         </div>
@@ -118,10 +126,10 @@
     <!-- JavaScript section -->
     <script>
             function handleTicketChange(ticket,isIncrease){
-    
-                // const ticketInput = document.getElementById(ticket + "-count" );
-                // const ticketCount = parseInt(ticketInput.value);
-                 const ticketCount = getInputValue(ticket);
+                 let ticketCount = getInputValue(ticket);
+                 if(isNaN(ticketCount)){
+                    ticketCount = 0;
+                }
                 let ticketNewCount = ticketCount;
                 if (isIncrease == true){
                     ticketNewCount = ticketCount + 1;
@@ -129,7 +137,6 @@
                 if (isIncrease == false && ticketCount>0){
                     ticketNewCount = ticketCount - 1;
                 }
-                // ticketInput.value = ticketNewCount;
                 document.getElementById(ticket +'-count').value = ticketNewCount;
                 
                 calculation();
@@ -137,8 +144,14 @@
             }
 
             function calculation(){
-                const firstCount = getInputValue('first');
-                const economyCount = getInputValue('economy');
+                let firstCount = getInputValue('first');
+                let economyCount = getInputValue('economy');
+                if(isNaN(firstCount)){
+                    firstCount = 0;
+                }
+                if(isNaN(economyCount)){
+                    economyCount = 0;
+                }
 
                 const totalPrice = firstCount*150 + economyCount*100;
 
@@ -160,7 +173,7 @@
             }
 
             function text(){
-                document.getElementById("show-text").innerHTML = ("congratulation. Your booking is completed successfully.");
+                document.getElementById("show-text").innerHTML = ("Congratulation. Your booking is completed successfully.");
             }
 
     </script>
